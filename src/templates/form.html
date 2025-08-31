@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <title>入力フォーム</title>
+   <!-- ページのメタデータとタイトルを設定 -->
+</head>
+<body>
+   入力フォーム<br>
+   <!-- フォームのタイトルを表示 -->
+   <form method="post" action="../app/receive.php">
+       <!-- フォームの開始。POSTメソッドでreceive.phpにデータを送信 -->
+       料理名：<input type="text" name="recipe_name" required><br> 
+       <!-- 料理名の入力フィールド。必須項目 -->
+       カテゴリ：
+       <select name="category">
+           <!-- カテゴリの選択フィールド -->
+           <option hidden>選択してください</option>
+           <option value="1">和食</option>
+           <option value="2">中華</option>
+           <option value="3">洋食</option>
+       </select>
+       <br>
+       難易度：
+       <input type="radio" name="difficulty" value="1">簡単
+       <input type="radio" name="difficulty" value="2" checked>普通
+       <input type="radio" name="difficulty" value="3">難しい
+       <!-- 難易度のラジオボタン。デフォルトは「普通」に設定 -->
+       <br>
+       予算：<input type="number" min="1" max="9999" name="budget">円
+       <!-- 予算の入力フィールド。1から9999の範囲で入力可能 -->
+       <br>
+       作り方：
+       <textarea name="howto" cols="40" rows="4" maxlength="320"></textarea>
+       <!-- 作り方のテキストエリア。最大320文字まで入力可能 -->
+       <br>
+       <input type="submit" value="送信">
+       <!-- 送信ボタン -->
+   </form>
+</body>
+</html>
