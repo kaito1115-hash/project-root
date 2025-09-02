@@ -36,7 +36,7 @@ try{
 }
 ?> -->
 
-<?php
+<!-- <?php
 $user = 'root';
 $pass = 'example';
 try {
@@ -67,6 +67,6 @@ try {
    echo 'エラー発生: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES) . '<br>';
    exit;
 }
-?>
+?> -->
 
 <?php phpinfo(); ?>
