@@ -1,70 +1,48 @@
-<?php
-$user = 'root';
-$pass = 'example';
-try{
-   $dbh = new PDO('mysql:host=db;dbname=recipe_db;charset=utf8', $user, $pass);
-   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $sql = 'SELECT * FROM recipes';
-   $stmt = $dbh->query($sql);
-   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   print_r($result);
-   $dbh = null;
-} catch(PDOException $e) {
-   echo 'エラー発生: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES) . '<br>';
-   exit;
-}
-?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピ管理アプリ</title>
+</head>
+<body>
+    <h1>レシピ管理アプリへようこそ</h1>
+    <nav>
+        <ul>
+            <li><a href="recipes.php">レシピ一覧</a></li>
+        </ul>
+    </nav>
 
-<?php
-$user = 'root';
-$pass = 'example';
-try{
-   $dbh = new PDO('mysql:host=db;dbname=recipe_db;charset=utf8', $user, $pass);
-   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $sql = 'SELECT * FROM recipes';
-   $stmt = $dbh->query($sql);
-   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   echo '<table>' . PHP_EOL;
-   echo '<tr>' . PHP_EOL;
-   echo '<th>料理名</th><th>予算</th><th>難易度</th>' . PHP_EOL;
-   echo '</tr>' . PHP_EOL;
-   echo '</table>' . PHP_EOL;
-   $dbh = null;
-} catch(PDOException $e) {
-   echo 'エラー発生: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES) . '<br>';
-   exit;
-}
-?>
+    <form method="post" action="app/receive.php">
+        料理名: <input type="text" name="recipe_name" required><br>
 
-<?php
-$user = 'root';
-$pass = 'example';
-try {
-   $dbh = new PDO('mysql:host=db;dbname=recipe_db;charset=utf8', $user, $pass);
-   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $sql = 'SELECT * FROM recipes';
-   $stmt = $dbh->query($sql);
-   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   echo '<table>' . PHP_EOL;
-   echo '<tr>' . PHP_EOL;
-   echo '<th>料理名</th><th>予算</th><th>難易度</th>' . PHP_EOL;
-   echo '</tr>' . PHP_EOL;
-   foreach ($result as $row) {
-       echo '<tr>' . PHP_EOL;
-       echo '<td>' . htmlspecialchars($row['recipe_name'], ENT_QUOTES) . '</td>' . PHP_EOL;
-       echo '<td>' . htmlspecialchars($row['budget'], ENT_QUOTES) . '</td>' . PHP_EOL;
-       echo '<td>' .
-       match ($row['difficulty']) {
-           1 => '簡単',
-           2 => '普通',
-           3 => '難しい',
-       } . '</td>' . PHP_EOL;
-       echo '</tr>' . PHP_EOL;
-   }
-   echo '</table>' . PHP_EOL;
-   $dbh = null;
-} catch (PDOException $e) {
-   echo 'エラー発生: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES) . '<br>';
-   exit;
-}
-?>
+        カテゴリ:
+        <select name="category" id="">
+            <option hidden>選択してください</option>
+            <option value="1">和食</option>
+            <option value="2">洋食</option>
+            <option value="3">中華</option>
+        </select>
+        <br>
+
+        難易度:
+        <input type="radio" name="difficulty" value="1">簡単
+        <input type="radio" name="difficulty" value="2" checked>普通
+        <input type="radio" name="difficulty" value="3">難しい
+        <br>
+
+        予算:
+        <input type="number" name="budget" id="" min="1" max="9999">円
+        <br>
+
+        作り方:
+        <textarea name="howto" id="" cols="40" rows="4" maxlength="320"></textarea>
+        <br>
+
+        <input type="submit" value="送信">
+    </form>
+
+
+
+</body>
+</html>
