@@ -27,7 +27,7 @@ services:
 
 
  phpmyadmin:
-   image: phpmyadmin/phpmyadmin
+   image: phpmyadmin
    restart: always
    ports:
      - "8081:80"
