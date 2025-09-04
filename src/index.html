@@ -14,7 +14,8 @@
     </nav> -->
 
     <form method="post" action="app/receive.php">
-        料理名: <input type="text" name="recipe_name" required><br>
+        料理名: <input type="text" name="recipe_name" required>
+        <br>
 
         カテゴリ:
         <select name="category" id="">
@@ -36,7 +37,7 @@
         <br>
 
         作り方:
-        <textarea name="howto" id="" cols="40" rows="4" maxlength="320"></textarea>
+        <textarea name="howto" id="" cols="40" rows="4" maxlength="320" placeholder="材料や分量など"></textarea>
         <br>
 
         <input type="submit" value="送信">
